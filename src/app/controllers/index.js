@@ -5,3 +5,5 @@ import './login.controller';
 import './main.controller';
 /* 用户管理 */
 import './user.controller';
+/* 广告管理*/
+import  './banner.controller';

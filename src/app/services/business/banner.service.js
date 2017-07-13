@@ -20,7 +20,24 @@ class ApiMethod extends BaseApiMethod{
 }
 
 class BannerService extends BaseService{
-
+    constructor(UtilsService) {
+        super();
+        this.api = new ApiMethod(UtilsService);
+    }
+    createBanner(data){
+        return this.api.createBanner(data);
+    }
+    modifyBanner(data){
+        return this.api.modifyBanner(data);
+    }
+    deleteBanner(data){
+        return this.api.deleteBanner(data);
+    }
+    getBannerList(data){
+        return this.api.getBannerList(data);
+    }
 }
 
-angular.module('services').service('UserService',UserService);
+angular.module('biz-services').factory('BannerService',["UtilsService",function(UtilsService) {
+    return new BannerService(UtilsService);
+}])
