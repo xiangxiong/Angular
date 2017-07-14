@@ -38,6 +38,6 @@ class BannerService extends BaseService{
     }
 }
 
-angular.module('biz-services').factory('BannerService',["UtilsService",function(UtilsService) {
+angular.module('services').factory('BannerService',["UtilsService",function(UtilsService){
     return new BannerService(UtilsService);
-}])
+}]);

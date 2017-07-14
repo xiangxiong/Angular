@@ -1,27 +1,47 @@
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content animated fadeInRight" ng-init="init()">
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <div class="ibox-nav">
                     <h5>广告管理</h5>
-                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs">
-                        <i class="fa fa-plus"></i>
-                        新建广告
-                    </button>
+                </div>
+                <div class="ibox-title">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            广告类型：
+                            <select name="bannerType" ng-model="viewModel.query.linkType" class="form-control"
+                                    style="width: 195px;">
+                                <option value="">--请选择--</option>
+                                <option ng-repeat="item in viewModel.dropDown.bannerTypes"
+                                        value="{{item.code}}">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            启用状态：
+                            <select name="imageStatu" id="imageStatu" ng-model="viewModel.query.isActive"
+                                    class="form-control" style="width: 195px;">
+                                <option value="">--请选择--</option>
+                                <option value="{{item.code}}" ng-repeat="item in viewModel.dropDown.imageStatus">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            标题：
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                                   placeholder="标题" ng-model="viewModel.query.name">
+                        </div>
+                        <button class="btn btn-primary" ng-click="queryBanner()" has-permission="qyj_banner_query">查询
+                        </button>
+                        <button class="btn btn-primary pull-right" ng-click="openBannerImageType()">
+                            <i class="fa fa-plus"></i>
+                            新建广告
+                        </button>
+                    </div>
                 </div>
                 <div class="ibox-content">
-                    <form role="form" class="form-inline">
-                        <div class="form-group">
-                            <label for="exampleInputEmail2">广告名</label>
-                            <input type="email" placeholder="请输入广告名" id="exampleInputEmail2" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword2">性別</label>
-                            <input type="password" placeholder="请输入密码" id="exampleInputPassword2" class="form-control">
-                        </div>
-                        <button class="btn btn-sm btn-primary " style="margin-top:4px;" type="submit"><i class="fa fa-search"></i>查询</button>
-                    </form>
-                    <table class="table table-hover">
+                    <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th style="width:15%;">标题</th>
@@ -33,21 +53,51 @@
                             <th style="width:20%;">操作</th>
                         </tr>
                         </thead>
-                        <tbody ng-repeat="user in users">
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a href="projects.html#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
-                                <a href="projects.html#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> 编辑 </a>
+                        <tbody>
+                        <tr class="ng-scope" ng-repeat="item in tableData.result">
+                            <td class="ng-binding"><a style="color: #1ab394; cursor: pointer; "
+                                                      ng-click="query(item.id)">{{item.name}}</a></td>
+                            <td class="ng-binding" style="cursor:pointer;">
+                                {{item.linkType | linkFilter}}
+                            </td>
+                            <td class="ng-binding">{{item.position}}</td>
+                            <td class="ng-binding">{{item.description}}</td>
+                            <td class="ng-binding">{{item.createTime | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+                            <td class="ng-binding"><i class="fa fa-circle-thin"
+                                                      id="{{item.isActive?'btn-start':'btn-enable'}}"></i>
+                                {{item.isActive |statusFilter}}
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-default btn-sm dropdown-toggle">
+                                    <i class="fa fa-sign-in" aria-hidden="true"></i>查看
+                                </button>
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" class="btn btn-warning btn-sm dropdown-toggle"
+                                            aria-expanded="true">操作
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="buttons.html#">编辑</a>
+                                        </li>
+                                        <li>
+                                            <a href="buttons.html#">删除</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                         </tbody>
+                        <!--<tfoot>-->
+                        <!--<tr>-->
+                            <!--<td colspan="8" class="text-center text-bg">-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tfoot>-->
                     </table>
+                    <center>
+                        <ui uipagination total-items="viewModel.totalItems" template-url="src/app/templates/pagination.html" ng-model="viewModel.currentPage" class="pagination" ng-change="pageChanged()"></ui>
+                    </center>
                 </div>
             </div>
         </div>

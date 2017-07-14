@@ -1,5 +1,7 @@
-export default function config($stateProvider,$urlRouterProvider,$locationProvider){
+export default function config($stateProvider,$urlRouterProvider,$locationProvider,$httpProvider){
   // $locationProvider.html5Mode(false).hashPrefix('');
+  $httpProvider.interceptors.push('HttpInterceptor');
+
   let loginState = {
     name:'login',
     url:'/login',
@@ -12,12 +14,6 @@ export default function config($stateProvider,$urlRouterProvider,$locationProvid
     template:require('./main.html'),
     controller:'MainController'
   };
-  let userState = {
-    name:'user',
-    url:'/user',
-    template:require('./views/userlist.html'),
-    controller:'UserController'
-  };
   let bannerState = {
     name:'banner',
     url:'/banner',
@@ -26,7 +22,8 @@ export default function config($stateProvider,$urlRouterProvider,$locationProvid
   };
   $stateProvider.state("login",loginState);
   $stateProvider.state("main",mainState);
-  $stateProvider.state("user",userState);
   $stateProvider.state("banner",bannerState);
   $urlRouterProvider.otherwise("/login");
 };
+
+config.$inject =['$stateProvider','$urlRouterProvider','$locationProvider','$httpProvider']

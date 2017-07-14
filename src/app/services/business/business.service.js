@@ -26,9 +26,8 @@ class BaseApiMethod{
       return util.post(url,data).then(
           (data) => {
               var result = data.data;
-
-              if(result && result.code == '200'){
-                 return result;
+              if(result && (result.responseCode == '200' || result.responseCode == '10000') ){
+                  return result;
               }else{
                  throw result;
               }

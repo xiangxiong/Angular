@@ -1,1 +1,1 @@
-angular.module('controller',['ui.bootstrap']);
+angular.module('controller',[]);

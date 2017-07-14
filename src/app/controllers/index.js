@@ -3,7 +3,5 @@ import './controller.module';
 import './login.controller';
 /* 后台主页 */
 import './main.controller';
-/* 用户管理 */
-import './user.controller';
 /* 广告管理*/
 import  './banner.controller';

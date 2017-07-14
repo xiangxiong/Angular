@@ -1,0 +1,59 @@
+.ibox-nav{
+    -moz-border-bottom-colors:none;
+    -moz-border-left-colors:none;
+    -moz-border-right-colors:none;
+    -moz-border-top-colors:none;
+    background-color:#fff;
+    border-color:#fff;-webkit-border-image:none;-o-border-image:none;border-image:none;border-style:solid solid none;
+    border-width:4px 0 0;color:inherit;margin-bottom:0;padding:14px 15px 7px;min-height:48px
+}
+.ibox-content h1,.ibox-content h2,.ibox-content h3,.ibox-content h4,.ibox-content h5,.ibox-title h1,.ibox-title h2,.ibox-title h3,.ibox-title h4,.ibox-title h5{margin-top:5px}
+.ibox-content{background-color:#fff;color:inherit;padding:15px 16px 20px;border-color:#e7eaec;-webkit-border-image:none;-o-border-image:none;border-image:none;border-style:solid solid none;border-width:1px 0}
+.ibox-title{
+    -moz-border-bottom-colors:none;
+    -moz-border-left-colors:none;
+    -moz-border-right-colors:none;
+    -moz-border-top-colors:none;
+    background-color:#fff;
+    border-color:#fff;-webkit-border-image:none;-o-border-image:none;border-image:none;border-style:solid solid none;
+    border-width:4px 0 0;color:inherit;margin-bottom:0;padding:14px 15px 20px;min-height:48px
+}
+.ibox-nav h5{
+    display:inline-block;
+    font-size:18px;
+    margin:0 0 7px;
+    padding:0;
+    text-overflow:ellipsis;
+    float:left;
+    /*box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.10);*/
+    color:#000000;
+}
+#btn-start {
+    color: #87D068;
+    background: #87D068;
+    border-radius: 100px;
+}
+
+#btn-enable {
+    color: #CBCBCB;
+    background: #CBCBCB;
+    border-radius: 100px;
+}
+/** 分页 */
+.pagination {
+    margin-top: 0;
+}
+.pagination .page-item .page-link {
+    color: #37a884;
+}
+.pagination .page-item.active .page-link,
+.pagination .page-item.active .page-link:focus,
+.pagination .page-item.active .page-link:hover {
+    color: #fff;
+    border-color: #37a884;
+    background-color: #37a884;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    border-color: #37a884 !important;
+    background-color: #37a884 !important;
+}

@@ -1,0 +1,126 @@
+<div class="dr-form" ng-init="init()">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{viewModel.pageTitle}}</h4>
+    </div>
+    <div class="modal-body modal-box">
+        <form class="form-horizontal dr-form" role="form">
+            <div class="panel panel-link">
+                <div class="panel-body dr_baseInfo">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>标题：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <input class="form-control"
+                                   type="text" placeholder="该输入标题" ng-model="viewModel.postData.name"
+                                   maxlength="50" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span
+                                style="color:red">*</span>描述：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <input class="form-control"
+                                   type="text" placeholder="该输入描述" ng-model="viewModel.postData.description"
+                                   maxlength="50" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>位置：</label>
+                        <div class="col-sm-5"  style="padding-left: 1px !important;">
+                            <input class="form-control"
+                                   type="text" placeholder="该输入位置"  ng-model="viewModel.postData.position"
+                                   maxlength="50"
+                                   required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span
+                                style="color:red">*</span>图片状态：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <select class="form-control" required="" ng-model="viewModel.postData.isActive">
+                                <option value="" selected="selected">--请选择--</option>
+                                <option ng-repeat="item in viewModel.dropDown.isActives"
+                                         ng-selected="viewModel.postData.isActive==item.code"
+                                         value="{{item.code}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>链接类型：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <select class="form-control" ng-change="settleModeChange()" required=""
+                                    ng-model="viewModel.postData.linkType">
+                                <option value="">--请选择--</option>
+                                <option  ng-repeat="item in viewModel.dropDown.linkTypes"
+                                         ng-selected="viewModel.postData.linkType==item.code"
+                                         value="{{item.code}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="viewModel.bannerLinkText">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>链接URL：</label>
+                        <div class="col-sm-5"  style="padding-left: 1px !important;">
+                            <input class="form-control"
+                                   type="text" placeholder="" ng-model="viewModel.postData.linkUrl"
+                                   maxlength="50" required="">
+                        </div>
+
+                        <!--<div class="col-sm-5" ng-show="viewModel.bannerLinkImage" style="padding-left: 1px !important;">-->
+                            <!--<div class="form-group m-0 dr-date-group" style="padding-left: 1px !important;">-->
+                                <!--<input class="form-control"-->
+                                       <!--ng-model="viewModel.postData.linkContent"-->
+                                       <!--type="text"-->
+                                       <!--placeholder="请上传banner图片"-->
+                                       <!--maxlength="50"-->
+                                       <!--required="">-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<label class="col-sm-3" style="margin-left:34px;text-align:left;padding-left: 21px;" ng-show="viewModel.bannerLinkImage">-->
+                            <!--<span class="btn-upload btn-uploading">上传</span>-->
+                            <!--<span class="btn-upload btn-uploading">预览</span>-->
+                        <!--</label>-->
+                    </div>
+
+                    <div class="form-group" ng-show="viewModel.bannerLinkImage">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>链接图片：</label>
+                        <!--<div class="col-sm-5" ng-show="viewModel.bannerLinkText" style="padding-left: 1px !important;">-->
+                            <!--<input class="form-control"-->
+                                   <!--type="text" placeholder="" ng-model="viewModel.postData.linkUrl"-->
+                                   <!--maxlength="50" required="">-->
+                        <!--</div>-->
+                        <div class="col-sm-5"  style="padding-left: 1px !important;">
+                            <div class="form-group m-0 dr-date-group" style="padding-left: 1px !important;">
+                                <input class="form-control"
+                                       ng-model="viewModel.selectFile"
+                                       type="text"
+                                       placeholder="请上传banner图片"
+                                       maxlength="50"
+                                       required="">
+                            </div>
+                        </div>
+
+                        <label class="col-sm-3" style="margin-left:34px;text-align:left;padding-left: 21px;" ng-show="viewModel.bannerLinkImage">
+                            <span class="btn-upload btn-uploading"><a href="{{viewModel.selectFile}}" target="_blank" style="color:#ffffff;">预览</a></span>
+                        </label>
+                    </div>
+
+                    <div class="form-group" ng-show="viewModel.bannerLinkContent" >
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>内容：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <textarea class="form-control" ng-model="viewModel.postData.linkContent" style="width:298px !important" rows="2" COLS="1"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center" style="padding: 10px 100px 15px 15px;">
+                    <button class="btn btn-secondary btn-plr-35" type="button" ng-click="cancel()">关闭</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
